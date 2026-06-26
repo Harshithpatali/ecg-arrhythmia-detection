@@ -2,36 +2,17 @@
 Application settings.
 """
 
-from pydantic_settings import (
-    BaseSettings
-)
+class Settings:
 
+    APP_NAME = "ECG Arrhythmia Detection API"
+    APP_VERSION = "1.0.0"
+    API_PREFIX = "/api/v1"
 
-class Settings(
-    BaseSettings
-):
+    HOST = "0.0.0.0"
+    PORT = 8000
 
-    APP_NAME: str = (
-        "ECG Arrhythmia Detection API"
-    )
-
-    APP_VERSION: str = "1.0.0"
-
-    API_PREFIX: str = "/api/v1"
-
-    HOST: str = "0.0.0.0"
-
-    PORT: int = 8000
-
-    DEBUG: bool = False
-
-    FRONTEND_URL: str = (
-        "*"
-    )
-
-    class Config:
-
-        env_file = ".env"
+    DEBUG = False
+    FRONTEND_URL = "*"
 
 
 settings = Settings()
