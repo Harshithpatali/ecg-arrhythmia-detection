@@ -7,15 +7,15 @@ from fastapi import (
 
 from typing import List
 
-from backend.app.services.prediction_service import (
+from app.services.prediction_service import (
     BackendPredictionService
 )
 
-from backend.app.utils.file_manager import (
+from app.utils.file_manager import (
     FileManager
 )
 
-from backend.app.utils.response_formatter import (
+from app.utils.response_formatter import (
     ResponseFormatter
 )
 

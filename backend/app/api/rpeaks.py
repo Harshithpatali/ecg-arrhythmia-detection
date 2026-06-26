@@ -6,11 +6,11 @@ from fastapi import (
 
 from typing import List
 
-from backend.app.utils.file_manager import (
+from app.utils.file_manager import (
     FileManager
 )
 
-from backend.app.services.rpeak_service import (
+from app.services.rpeak_service import (
     RPeakService
 )
 

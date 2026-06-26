@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from backend.app.schemas.health import (
+from app.schemas.health import (
     HealthResponse
 )
 
