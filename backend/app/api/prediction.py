@@ -15,7 +15,7 @@ from app.utils.file_manager import (
     FileManager
 )
 
-from app.utils.response_formatter import (
+from backend.app.utils.response_formatter import (
     ResponseFormatter
 )
 

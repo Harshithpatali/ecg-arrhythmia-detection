@@ -4,30 +4,30 @@ from fastapi.middleware.cors import (
     CORSMiddleware
 )
 
-from app.core.config import (
+from backend.app.core.config import (
     settings
 )
 
-from app.core.logging import (
+from backend.app.core.logging import (
     configure_logging
 )
 
-from app.api.health import (
+from backend.app.api.health import (
     router as health_router
 )
-from app.api.prediction import (
+from backend.app.api.prediction import (
     router as prediction_router
 )
 
-from app.api.waveform import (
+from backend.app.api.waveform import (
     router as waveform_router
 )
 
-from app.api.rpeaks import (
+from backend.app.api.rpeaks import (
     router as rpeak_router
 )
 
-from app.api.heartbeats import (
+from backend.app.api.heartbeats import (
     router as heartbeat_router
 )
 
