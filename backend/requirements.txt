@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+numpy
+pandas
+tensorflow
+wfdb
+scipy
+python-multipart
+pydantic
+scikit-learn
+joblib
