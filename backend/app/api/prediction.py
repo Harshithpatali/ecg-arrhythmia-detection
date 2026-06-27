@@ -7,11 +7,11 @@ from fastapi import (
 
 from typing import List
 
-from app.services.prediction_service import (
+from backend.app.services.prediction_service import (
     BackendPredictionService
 )
 
-from app.utils.file_manager import (
+from backend.app.utils.file_manager import (
     FileManager
 )
 
