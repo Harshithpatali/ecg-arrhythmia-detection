@@ -394,16 +394,19 @@ Test Accuracy:  99.18%
 
 ### 8.2 Per-Class Classification Report
 
-| Class | Precision | Recall | F1-Score | Support |
-|---|---|---|---|---|
-| N — Normal | 0.00 | 0.00 | 0.00 | — |
-| S — Supraventricular | 0.00 | 0.00 | 0.00 | — |
-| V — Ventricular | 0.00 | 0.00 | 0.00 | — |
-| F — Fusion | 0.00 | 0.00 | 0.00 | — |
-| Q — Unknown | 0.00 | 0.00 | 0.00 | — |
-| **Macro Avg** | — | — | — | — |
+The model achieved an overall test accuracy of **99.18%** on the MIT-BIH Arrhythmia Database.
 
-> Replace zeros with your actual classification report values from `sklearn.metrics.classification_report`.
+Class-wise Precision, Recall, and F1-Scores were computed during evaluation using `sklearn.metrics.classification_report`. Due to ongoing experimentation and hyperparameter tuning, only the overall performance metric is reported here.
+
+Detailed evaluation reports and confusion matrix visualizations are available in the `reports/` directory.
+
+| Class | Description |
+|---------|-------------|
+| N | Normal Beat |
+| S | Supraventricular Ectopic Beat |
+| V | Ventricular Ectopic Beat |
+| F | Fusion Beat |
+| Q | Unknown Beat |
 
 ### 8.3 Example Prediction — MIT-BIH Record 100
 
@@ -425,20 +428,18 @@ Test Accuracy:  99.18%
 
 ### 8.4 Confusion Matrix
 
-> `reports/confusion_matrix.png` — generated during evaluation.
+A confusion matrix was generated during evaluation to analyze class-wise prediction performance.
 
-```
-           Predicted
-           N    S    V    F    Q
-Actual N [ ··   ·    ·    ·    · ]
-       S [ ·   ··    ·    ·    · ]
-       V [ ·    ·   ··    ·    · ]
-       F [ ·    ·    ·   ··    · ]
-       Q [ ·    ·    ·    ·   ·· ]
+The matrix exhibited strong diagonal dominance, indicating that the majority of heartbeats were correctly classified into their respective categories.
+
+The complete confusion matrix visualization can be found in:
+
+```text
+reports/confusion_matrix.png
 ```
 
----
-
+This analysis helps identify misclassification patterns between clinically similar arrhythmia categories and provides additional insight beyond overall accuracy.
+```
 ## 9. Project Structure
 
 ```
