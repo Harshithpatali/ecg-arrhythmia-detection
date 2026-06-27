@@ -6,6 +6,7 @@ from fastapi import (
 )
 
 from typing import List
+import traceback
 
 from backend.app.services.prediction_service import (
     BackendPredictionService
@@ -44,7 +45,11 @@ async def predict_ecg(
 
     try:
 
+        print("\n========== ECG PREDICTION START ==========")
+
         for file in files:
+
+            print(f"Saving file: {file.filename}")
 
             FileManager.save_upload_file(
 
@@ -53,6 +58,8 @@ async def predict_ecg(
                 temp_dir,
 
             )
+
+        print("Files saved successfully")
 
         result = (
 
@@ -63,6 +70,8 @@ async def predict_ecg(
 
         )
 
+        print("Prediction completed successfully")
+
         return (
             ResponseFormatter
             .format(
@@ -71,6 +80,10 @@ async def predict_ecg(
         )
 
     except Exception as e:
+
+        print("\n========== ECG PREDICTION ERROR ==========")
+        print(traceback.format_exc())
+        print("==========================================\n")
 
         raise HTTPException(
 
