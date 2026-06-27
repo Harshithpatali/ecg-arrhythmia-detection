@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 
@@ -50,11 +49,33 @@ def render_ecg_analysis():
                 "Running inference..."
             ):
 
-                result = (
-                    ECGApiClient.predict(
-                        uploaded_files
+                try:
+
+                    result = (
+                        ECGApiClient.predict(
+                            uploaded_files
+                        )
                     )
-                )
+
+                except Exception as e:
+
+                    st.error(
+                        str(e)
+                    )
+
+                    if (
+                        hasattr(
+                            e,
+                            "response",
+                        )
+                        and e.response is not None
+                    ):
+
+                        st.code(
+                            e.response.text
+                        )
+
+                    raise
 
             metadata = (
                 result["metadata"]
@@ -83,11 +104,8 @@ def render_ecg_analysis():
             )
 
             display_metrics(
-
                 metadata,
-
                 risk,
-
                 avg_conf,
             )
 
@@ -124,11 +142,9 @@ def render_ecg_analysis():
             )
 
             percentage_df = pd.DataFrame(
-
                 summary[
                     "percentages"
                 ].items(),
-
                 columns=[
                     "Class",
                     "Percentage",
@@ -136,9 +152,7 @@ def render_ecg_analysis():
             )
 
             st.dataframe(
-
                 percentage_df,
-
                 use_container_width=True,
             )
 
@@ -160,19 +174,16 @@ def render_ecg_analysis():
             prediction_df = pd.DataFrame({
 
                 "Beat":
-
                     range(
                         sample_size
                     ),
 
                 "Prediction":
-
                     [
                         CLASS_NAMES.get(
                             x,
                             x,
                         )
-
                         for x in result[
                             "beat_predictions"
                         ][
@@ -181,7 +192,6 @@ def render_ecg_analysis():
                     ],
 
                 "Confidence":
-
                     result[
                         "confidences"
                     ][
@@ -190,15 +200,9 @@ def render_ecg_analysis():
             })
 
             st.dataframe(
-
                 prediction_df,
-
                 use_container_width=True,
             )
-
-            # ==========================================
-            # PDF REPORT DOWNLOAD
-            # ==========================================
 
             st.divider()
 
@@ -206,30 +210,28 @@ def render_ecg_analysis():
                 "Download Report"
             )
 
-            pdf_buffer = (
+            try:
 
-                PDFReportGenerator.generate(
-
-                    metadata,
-
-                    summary,
-
-                    confidences,
+                pdf_buffer = (
+                    PDFReportGenerator.generate(
+                        metadata,
+                        summary,
+                        confidences,
+                    )
                 )
 
-            )
+                st.download_button(
+                    label="📄 Download PDF Report",
+                    data=pdf_buffer,
+                    file_name="ecg_report.pdf",
+                    mime="application/pdf",
+                    use_container_width=True,
+                )
 
-            st.download_button(
+            except Exception as e:
 
-                label="📄 Download PDF Report",
+                st.error(
+                    f"PDF generation failed: {e}"
+                )
 
-                data=pdf_buffer,
-
-                file_name=(
-                    "ecg_report.pdf"
-                ),
-
-                mime="application/pdf",
-                use_container_width=True,
-            )
-
+                st.exception(e)
