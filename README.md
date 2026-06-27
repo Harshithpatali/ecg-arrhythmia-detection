@@ -689,3 +689,7 @@ Research Interests: Machine Learning · Deep Learning · Signal Processing · Ti
 ---
 
 *For questions, issues, or collaborations, please open a GitHub Issue or reach out via the repository.*
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
