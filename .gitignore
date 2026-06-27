@@ -9,8 +9,7 @@ venv/
 uploads/
 temp/
 
-models/*.h5
-models/*.keras
+
 
 *.npz
 *.npy

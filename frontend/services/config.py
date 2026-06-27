@@ -3,7 +3,7 @@ Frontend configuration.
 """
 
 API_BASE_URL = (
-    "http://localhost:8000"
+    "https://ecg-arrhythmia-detection-k4z0.onrender.com"
 )
 
 PREDICT_ENDPOINT = (
